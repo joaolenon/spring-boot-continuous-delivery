@@ -1,1 +1,18 @@
 language: java
+jdk:
+  - openjdk8
+before_deploy:
+  - ./mvnw package
+  -  zip -r application.zip ./target/*.jar
+deploy:
+  skip_cleanup: true
+  provider: elasticbeanstalk
+  access_key_id:
+    secure: "GFUx+pyskXtuiBcgqX6CFcZ4gf39QEV1lZRIXxlIYHtQ6FuxB2bJeN6RLg+s+myKAIyzZdp32XMJqvtEp6NfuyL+JnPhwXrt4B85+PcHK1THg7Ly5MSKj3/Pt+Fwfj5efEQhO7d7+HJeSEvcp7JbzqJ4ANMEQWtYSxeMgf4CEjJ1Q6e83Y0r4iHIkAflY9AvRXlxvPfK1Ugjw90847DHCsHL8j1ontqefp8Y3GQZIqhxYp2DKCrGciPgN5VB+4Al8ub/t8hZHqo1AHbNzhwxIoHINPRJV7/LoKbwb2/3XQsjfphrp0MGxB7Xrj9Zg+hV00dUIXK6NyXGZQB2bQB3W+TQngFqgHSIUBpHNwNfnxex+tBs5IPifS7M/l04VCzjoK8snxemgOjNDP95v0MfI/m1E4I3ZScmn7bKoU4OsoISapFiy06EsXETC5KCqbjzMdF6X9qbfPlMyDylvb0Hq2UOuBZNy6dJH6ykhiQxDfFqlqkEQRyNGtKw0GEnqS3bZipnqBIGUTVdF5aQMb1OUZNJYeticxL8wmrFToAluP5uGzFS8dONrPdywMrIpQStqPbXE+TO/mvaM30qXEQiehTYk5vme1iZZu8bbfqtXvmeheNV8nhU6DlSzYH+4KtQdpWY6SS2knJukVRi76VjYtdPJHz2GH2rfg6sStyNgLo="
+  secret_access_key:
+    secure: "FeX9/sJL9maY0vZ+JAtjhjFnDdL9n4ye1LZeo9UEPRy4RDEAh7K3TlrR5uycHpwdvCc6KYIMMdpQr7d4UQFOF6DhLEqNAJy2F5DY1ga0rw9Am88cdmQ5rmPFBxIRsq8oSKRKRtUeS/NXo2tW2JmKr98/QX/SL7N6iC57e1lXKART+w2bEJUueeuPxkHt2sHtIMdAdu+x79kA/GsDw1t73BoW/uzqTKkAyXQTvaVGWsCsoly4ljLMgvZJTfXwXlTnXKB/h/5VqpdAT4LJSbgp+Cd9y8Yb4Q/WGHouyhUxHfnAWeFsxXT5PWVVQYCHcjZamh0HZMxJstfaPq4/wUHVGDbs4jPy+z/Zq7ZBji88rhevFfdL8FeoNcRMJ/6uhyWoox9tgXcBU1Mi0oR/S5NzTvp07ROuYaVSwOs75Yn4l23LCvdTw99aUoViS80rUj9+aHE8taYmWyLjJX9lcTpfeWHTG2r9dJ6wfPG24qa9v9rdIFjom67dMr9hg/rnplI7xpS1NsM+wDaDZR9VIXtsbD5Wq5q6RboMuS/IUaD6iOeJehszzxm40Buzd4PiMCx/oIu06Em+PNjA+lIPhTJON7RhJ2bq+hsqv/gTpS71g1Eg/auK57osi3egvMi3KdXfAd5bBQQtCy3GBnma1kWpwT/cmfzzRcrkUyO3RCyWoEs="
+  region: "us-east-2"
+  app: "spring-boot-deployment"
+  env: "SpringBootDeployment-env-1"
+  bucket_name: "elasticbeanstalk-us-east-2-826698583803"
+  zip_file: application.zip
